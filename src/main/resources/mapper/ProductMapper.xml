@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzl.demo.dao.mapper.ProductMapper">
+
+    <resultMap type="com.zzl.demo.dao.entity.ProductPO" id="ProductMapper">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uid" column="uid" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="subtitle" column="subtitle" jdbcType="VARCHAR"/>
+        <result property="enTitle" column="en_title" jdbcType="VARCHAR"/>
+        <result property="image" column="image" jdbcType="VARCHAR"/>
+        <result property="model" column="model" jdbcType="VARCHAR"/>
+        <result property="tags" column="tags" jdbcType="VARCHAR"/>
+        <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
+        <result property="firstCid" column="first_cid" jdbcType="INTEGER"/>
+        <result property="secondCid" column="second_cid" jdbcType="INTEGER"/>
+        <result property="cid" column="cid" jdbcType="INTEGER"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="maxPrice" column="max_price" jdbcType="INTEGER"/>
+        <result property="minPrice" column="min_price" jdbcType="INTEGER"/>
+        <result property="productStatus" column="product_status" jdbcType="INTEGER"/>
+        <result property="countAllocateDealer" column="count_allocate_dealer" jdbcType="INTEGER"/>
+        <result property="countAllocateStore" column="count_allocate_store" jdbcType="INTEGER"/>
+        <result property="deleted" column="is_deleted" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="INTEGER"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="AllColumn">id
+    , uid, title, subtitle, en_title, image, model, tags, brand_id, first_cid, second_cid, cid, sort, max_price, min_price, product_status, count_allocate_dealer, count_allocate_store, is_deleted, gmt_create, gmt_modified</sql>
+
+    <!--==========系统生成方法——开始==========-->
+    <!--查询单个-->
+    <select id="getById" resultMap="ProductMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM product
+        WHERE id = #{id} AND is_deleted = 0
+    </select>
+
+    <!--获取指定Limit的数据lists-->
+    <select id="listByLimit" resultMap="ProductMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM product
+        <where>
+            <if test="id != null">
+                AND `id` = #{id}
+            </if>
+            <if test="uid != null">
+                AND `uid` = #{uid}
+            </if>
+            <if test="title != null and title != ''">
+                AND `title` = #{title}
+            </if>
+            <if test="subtitle != null and subtitle != ''">
+                AND `subtitle` = #{subtitle}
+            </if>
+            <if test="enTitle != null and enTitle != ''">
+                AND `en_title` = #{enTitle}
+            </if>
+            <if test="image != null and image != ''">
+                AND `image` = #{image}
+            </if>
+            <if test="model != null and model != ''">
+                AND `model` = #{model}
+            </if>
+            <if test="tags != null and tags != ''">
+                AND `tags` = #{tags}
+            </if>
+            <if test="brandId != null">
+                AND `brand_id` = #{brandId}
+            </if>
+            <if test="firstCid != null">
+                AND `first_cid` = #{firstCid}
+            </if>
+            <if test="secondCid != null">
+                AND `second_cid` = #{secondCid}
+            </if>
+            <if test="cid != null">
+                AND `cid` = #{cid}
+            </if>
+            <if test="sort != null">
+                AND `sort` = #{sort}
+            </if>
+            <if test="maxPrice != null">
+                AND `max_price` = #{maxPrice}
+            </if>
+            <if test="minPrice != null">
+                AND `min_price` = #{minPrice}
+            </if>
+            <if test="productStatus != null">
+                AND `product_status` = #{productStatus}
+            </if>
+            <if test="countAllocateDealer != null">
+                AND `count_allocate_dealer` = #{countAllocateDealer}
+            </if>
+            <if test="countAllocateStore != null">
+                AND `count_allocate_store` = #{countAllocateStore}
+            </if>
+            <if test="deleted != null">
+                AND `is_deleted` = #{deleted}
+            </if>
+            <if test="gmtCreate != null">
+                AND `gmt_create` = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                AND `gmt_modified` = #{gmtModified}
+            </if>
+        </where>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询lists-->
+    <select id="listByAll" resultMap="ProductMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM product
+        <where>
+            <if test="id != null">
+                AND `id` = #{id}
+            </if>
+            <if test="uid != null">
+                AND `uid` = #{uid}
+            </if>
+            <if test="title != null and title != ''">
+                AND `title` = #{title}
+            </if>
+            <if test="subtitle != null and subtitle != ''">
+                AND `subtitle` = #{subtitle}
+            </if>
+            <if test="enTitle != null and enTitle != ''">
+                AND `en_title` = #{enTitle}
+            </if>
+            <if test="image != null and image != ''">
+                AND `image` = #{image}
+            </if>
+            <if test="model != null and model != ''">
+                AND `model` = #{model}
+            </if>
+            <if test="tags != null and tags != ''">
+                AND `tags` = #{tags}
+            </if>
+            <if test="brandId != null">
+                AND `brand_id` = #{brandId}
+            </if>
+            <if test="firstCid != null">
+                AND `first_cid` = #{firstCid}
+            </if>
+            <if test="secondCid != null">
+                AND `second_cid` = #{secondCid}
+            </if>
+            <if test="cid != null">
+                AND `cid` = #{cid}
+            </if>
+            <if test="sort != null">
+                AND `sort` = #{sort}
+            </if>
+            <if test="maxPrice != null">
+                AND `max_price` = #{maxPrice}
+            </if>
+            <if test="minPrice != null">
+                AND `min_price` = #{minPrice}
+            </if>
+            <if test="productStatus != null">
+                AND `product_status` = #{productStatus}
+            </if>
+            <if test="countAllocateDealer != null">
+                AND `count_allocate_dealer` = #{countAllocateDealer}
+            </if>
+            <if test="countAllocateStore != null">
+                AND `count_allocate_store` = #{countAllocateStore}
+            </if>
+            <if test="deleted != null">
+                AND `is_deleted` = #{deleted}
+            </if>
+            <if test="gmtCreate != null">
+                AND `gmt_create` = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                AND `gmt_modified` = #{gmtModified}
+            </if>
+        </where>
+    </select>
+
+    <!--插入一条记录-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO product
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                `uid`,
+            </if>
+            <if test="title != null">
+                `title`,
+            </if>
+            <if test="subtitle != null">
+                `subtitle`,
+            </if>
+            <if test="enTitle != null">
+                `en_title`,
+            </if>
+            <if test="image != null">
+                `image`,
+            </if>
+            <if test="model != null">
+                `model`,
+            </if>
+            <if test="tags != null">
+                `tags`,
+            </if>
+            <if test="brandId != null">
+                `brand_id`,
+            </if>
+            <if test="firstCid != null">
+                `first_cid`,
+            </if>
+            <if test="secondCid != null">
+                `second_cid`,
+            </if>
+            <if test="cid != null">
+                `cid`,
+            </if>
+            <if test="sort != null">
+                `sort`,
+            </if>
+            <if test="maxPrice != null">
+                `max_price`,
+            </if>
+            <if test="minPrice != null">
+                `min_price`,
+            </if>
+            <if test="productStatus != null">
+                `product_status`,
+            </if>
+            <if test="countAllocateDealer != null">
+                `count_allocate_dealer`,
+            </if>
+            <if test="countAllocateStore != null">
+                `count_allocate_store`,
+            </if>
+            <if test="deleted != null">
+                `is_deleted`,
+            </if>
+            `gmt_create`,
+            `gmt_modified`,
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="uid != null">
+                #{uid},
+            </if>
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="subtitle != null">
+                #{subtitle},
+            </if>
+            <if test="enTitle != null">
+                #{enTitle},
+            </if>
+            <if test="image != null">
+                #{image},
+            </if>
+            <if test="model != null">
+                #{model},
+            </if>
+            <if test="tags != null">
+                #{tags},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+            <if test="firstCid != null">
+                #{firstCid},
+            </if>
+            <if test="secondCid != null">
+                #{secondCid},
+            </if>
+            <if test="cid != null">
+                #{cid},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="maxPrice != null">
+                #{maxPrice},
+            </if>
+            <if test="minPrice != null">
+                #{minPrice},
+            </if>
+            <if test="productStatus != null">
+                #{productStatus},
+            </if>
+            <if test="countAllocateDealer != null">
+                #{countAllocateDealer},
+            </if>
+            <if test="countAllocateStore != null">
+                #{countAllocateStore},
+            </if>
+            <if test="deleted != null">
+                #{deleted},
+            </if>
+            #{gmtCreate},
+            #{gmtModified},
+        </trim>
+    </insert>
+
+    <!--通过主键修改数据，禁止非主键更新-->
+    <update id="updateById">
+        UPDATE product
+        <set>
+            <if test="uid != null">
+                `uid` = #{uid},
+            </if>
+            <if test="title != null">
+                `title` = #{title},
+            </if>
+            <if test="subtitle != null">
+                `subtitle` = #{subtitle},
+            </if>
+            <if test="enTitle != null">
+                `en_title` = #{enTitle},
+            </if>
+            <if test="image != null">
+                `image` = #{image},
+            </if>
+            <if test="model != null">
+                `model` = #{model},
+            </if>
+            <if test="tags != null">
+                `tags` = #{tags},
+            </if>
+            <if test="brandId != null">
+                `brand_id` = #{brandId},
+            </if>
+            <if test="firstCid != null">
+                `first_cid` = #{firstCid},
+            </if>
+            <if test="secondCid != null">
+                `second_cid` = #{secondCid},
+            </if>
+            <if test="cid != null">
+                `cid` = #{cid},
+            </if>
+            <if test="sort != null">
+                `sort` = #{sort},
+            </if>
+            <if test="maxPrice != null">
+                `max_price` = #{maxPrice},
+            </if>
+            <if test="minPrice != null">
+                `min_price` = #{minPrice},
+            </if>
+            <if test="productStatus != null">
+                `product_status` = #{productStatus},
+            </if>
+            <if test="countAllocateDealer != null">
+                `count_allocate_dealer` = #{countAllocateDealer},
+            </if>
+            <if test="countAllocateStore != null">
+                `count_allocate_store` = #{countAllocateStore},
+            </if>
+            <if test="deleted != null">
+                `is_deleted` = #{deleted},
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create` = #{gmtCreate},
+            </if>
+            `gmt_modified` = #{gmtModified},
+        </set>
+        WHERE `id` = #{id}
+    </update>
+
+    <!--通过主键软删除-->
+    <update id="deleteById">
+        UPDATE product
+        SET is_deleted   = 1,
+            gmt_modified = UNIX_TIMESTAMP()
+        WHERE id = #{id}
+    </update>
+
+    <!--通过主键硬删除-->
+    <delete id="forceDeleteById">
+        DELETE
+        FROM product
+        WHERE id = #{id}
+    </delete>
+
+    <!--==========系统生成公共方法——结束==========-->
+
+</mapper>

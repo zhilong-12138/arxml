@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<AUTOSAR xmlns="http://autosar.org/schema/r4.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://autosar.org/schema/r4.0 AUTOSAR_00048.xsd">
+  <AR-PACKAGES>
+    <AR-PACKAGE>
+      <SHORT-NAME>fawsn</SHORT-NAME>
+      <AR-PACKAGES>
+        <AR-PACKAGE>
+          <SHORT-NAME>hinge</SHORT-NAME>
+          <AR-PACKAGES>
+            <AR-PACKAGE>
+              <SHORT-NAME>interface_deployment</SHORT-NAME>
+              <ELEMENTS>
+                <SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+                  <SHORT-NAME>calc_deployment</SHORT-NAME>
+                  <EVENT-DEPLOYMENTS>
+                    <SOMEIP-EVENT-DEPLOYMENT>
+                      <SHORT-NAME>someip_event_HexResult</SHORT-NAME>
+                      <EVENT-REF DEST="VARIABLE-DATA-PROTOTYPE">/fawsn/hinge/interface/calc/HexResult</EVENT-REF>
+                      <EVENT-ID>111</EVENT-ID>
+                      <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-EVENT-DEPLOYMENT>
+                  </EVENT-DEPLOYMENTS>
+                  <FIELD-DEPLOYMENTS>
+                    <SOMEIP-FIELD-DEPLOYMENT>
+                      <SHORT-NAME>someip_field_CurrentTime</SHORT-NAME>
+                      <FIELD-REF DEST="FIELD">/fawsn/hinge/interface/calc/CurrentTime</FIELD-REF>
+                      <GET>
+                        <SHORT-NAME>getter</SHORT-NAME>
+                        <METHOD-ID>121</METHOD-ID>
+                      </GET>
+                      <NOTIFIER>
+                        <SHORT-NAME>notifier</SHORT-NAME>
+                        <EVENT-ID>112</EVENT-ID>
+                        <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                      </NOTIFIER>
+                    </SOMEIP-FIELD-DEPLOYMENT>
+                  </FIELD-DEPLOYMENTS>
+                  <METHOD-DEPLOYMENTS>
+                    <SOMEIP-METHOD-DEPLOYMENT>
+                      <SHORT-NAME>someip_method_calculate</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/fawsn/hinge/interface/calc/calculate</METHOD-REF>
+                      <METHOD-ID>122</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                    <SOMEIP-METHOD-DEPLOYMENT>
+                      <SHORT-NAME>someip_method_DecToHex</SHORT-NAME>
+                      <METHOD-REF DEST="CLIENT-SERVER-OPERATION">/fawsn/hinge/interface/calc/DecToHex</METHOD-REF>
+                      <METHOD-ID>123</METHOD-ID>
+                      <TRANSPORT-PROTOCOL>TCP</TRANSPORT-PROTOCOL>
+                    </SOMEIP-METHOD-DEPLOYMENT>
+                  </METHOD-DEPLOYMENTS>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/fawsn/hinge/interface/calc</SERVICE-INTERFACE-REF>
+                  <EVENT-GROUPS>
+                    <SOMEIP-EVENT-GROUP>
+                      <SHORT-NAME>someip_event_group</SHORT-NAME>
+                      <EVENT-GROUP-ID>131</EVENT-GROUP-ID>
+                      <EVENT-REFS>
+                        <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/fawsn/hinge/interface_deployment/calc_deployment/someip_event_HexResult</EVENT-REF>
+                        <EVENT-REF DEST="SOMEIP-EVENT-DEPLOYMENT">/fawsn/hinge/interface_deployment/calc_deployment/someip_field_CurrentTime/notifier</EVENT-REF>
+                      </EVENT-REFS>
+                    </SOMEIP-EVENT-GROUP>
+                  </EVENT-GROUPS>
+                  <SERVICE-INTERFACE-ID>100</SERVICE-INTERFACE-ID>
+                </SOMEIP-SERVICE-INTERFACE-DEPLOYMENT>
+                <USER-DEFINED-SERVICE-INTERFACE-DEPLOYMENT>
+                  <SHORT-NAME>calc_deployment_ipc</SHORT-NAME>
+                  <SERVICE-INTERFACE-REF DEST="SERVICE-INTERFACE">/fawsn/hinge/interface/calc</SERVICE-INTERFACE-REF>
+                </USER-DEFINED-SERVICE-INTERFACE-DEPLOYMENT>
+              </ELEMENTS>
+            </AR-PACKAGE>
+            <AR-PACKAGE>
+              <SHORT-NAME>interface</SHORT-NAME>
+              <ELEMENTS>
+                <SERVICE-INTERFACE>
+                  <SHORT-NAME>calc</SHORT-NAME>
+                  <NAMESPACES>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>fawsn</SHORT-NAME>
+                      <SYMBOL>fawsn</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>hinge</SHORT-NAME>
+                      <SYMBOL>hinge</SYMBOL>
+                    </SYMBOL-PROPS>
+                    <SYMBOL-PROPS>
+                      <SHORT-NAME>calc</SHORT-NAME>
+                      <SYMBOL>calc</SYMBOL>
+                    </SYMBOL-PROPS>
+                  </NAMESPACES>
+                  <EVENTS>
+                    <VARIABLE-DATA-PROTOTYPE>
+                      <SHORT-NAME>HexResult</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/string</TYPE-TREF>
+                    </VARIABLE-DATA-PROTOTYPE>
+                  </EVENTS>
+                  <FIELDS>
+                    <FIELD>
+                      <SHORT-NAME>CurrentTime</SHORT-NAME>
+                      <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/float</TYPE-TREF>
+                      <HAS-GETTER>true</HAS-GETTER>
+                      <HAS-NOTIFIER>true</HAS-NOTIFIER>
+                      <HAS-SETTER>false</HAS-SETTER>
+                    </FIELD>
+                  </FIELDS>
+                  <METHODS>
+                    <CLIENT-SERVER-OPERATION>
+                      <SHORT-NAME>calculate</SHORT-NAME>
+                      <ARGUMENTS>
+                        <ARGUMENT-DATA-PROTOTYPE>
+                          <SHORT-NAME>num</SHORT-NAME>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/OperatingNumber</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE>
+                          <SHORT-NAME>opt</SHORT-NAME>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/Operator</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE>
+                          <SHORT-NAME>OperatingResult</SHORT-NAME>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/int64_t</TYPE-TREF>
+                          <DIRECTION>OUT</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                      </ARGUMENTS>
+                    </CLIENT-SERVER-OPERATION>
+                    <CLIENT-SERVER-OPERATION>
+                      <SHORT-NAME>DecToHex</SHORT-NAME>
+                      <ARGUMENTS>
+                        <ARGUMENT-DATA-PROTOTYPE>
+                          <SHORT-NAME>DecNum</SHORT-NAME>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/uint32_t</TYPE-TREF>
+                          <DIRECTION>IN</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                        <ARGUMENT-DATA-PROTOTYPE>
+                          <SHORT-NAME>result</SHORT-NAME>
+                          <TYPE-TREF DEST="STD-CPP-IMPLEMENTATION-DATA-TYPE">/fawsn/hinge/data_type/bool</TYPE-TREF>
+                          <DIRECTION>OUT</DIRECTION>
+                        </ARGUMENT-DATA-PROTOTYPE>
+                      </ARGUMENTS>
+                    </CLIENT-SERVER-OPERATION>
+                  </METHODS>
+                </SERVICE-INTERFACE>
+              </ELEMENTS>
+            </AR-PACKAGE>
+          </AR-PACKAGES>
+        </AR-PACKAGE>
+      </AR-PACKAGES>
+    </AR-PACKAGE>
+  </AR-PACKAGES>
+</AUTOSAR>

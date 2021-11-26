@@ -1,0 +1,36 @@
+server:
+  port: 8080 #微服务端口号,
+spring:
+  application:
+    name: demo #微服务名
+  datasource:
+    name: test
+    # 使用druid数据源
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    druid:
+      url: jdbc:mysql://127.0.0.1:3306/wsc?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      #url: jdbc:mysql://120.55.189.92:3306/wsc?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&allowMultiQueries=true
+      username: root
+      password: root
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    cache: false #关闭缓存
+
+mybatis:
+  mapper-locations: "classpath*:mapper/*.xml" #配置mybatis扫描xml文件路径,当前xml的文件路径为/mapper,因此是配置为classpath*:mapper/*.xml
+  type-aliases-package: com.zzl.demo.entity #配置mybatis扫描数据映射类的路径,
+
+#开启logging myabtis语句打印
+logging:
+  pattern:
+    #格式化，只能输出日期和内容
+    console: "[%d - %msg%n"
+    #        配置日志输出位置
+    path: c:/Data/log
+    #      配置日志输出文件 ，指定文件名
+    file: c:/Data/sell.log
+  level:
+    learning: debug
+    com.zzl.demo.mapper: debug

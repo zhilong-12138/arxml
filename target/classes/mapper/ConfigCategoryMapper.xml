@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zzl.demo.dao.mapper.ConfigCategoryMapper">
+
+    <resultMap type="com.zzl.demo.dao.entity.ConfigCategoryPO" id="ConfigCategoryMapper">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="brandId" column="brand_id" jdbcType="INTEGER"/>
+        <result property="firstCid" column="first_cid" jdbcType="INTEGER"/>
+        <result property="secondCid" column="second_cid" jdbcType="INTEGER"/>
+        <result property="parentCid" column="parent_cid" jdbcType="INTEGER"/>
+        <result property="level" column="level" jdbcType="INTEGER"/>
+        <result property="sort" column="sort" jdbcType="INTEGER"/>
+        <result property="deleted" column="is_deleted" jdbcType="INTEGER"/>
+        <result property="gmtCreate" column="gmt_create" jdbcType="INTEGER"/>
+        <result property="gmtModified" column="gmt_modified" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <sql id="AllColumn">id, title, brand_id, first_cid, second_cid, parent_cid, level, sort, is_deleted, gmt_create, gmt_modified</sql>
+
+    <!--==========系统生成方法——开始==========-->
+    <!--查询单个-->
+    <select id="getById" resultMap="ConfigCategoryMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM config_category
+        WHERE id = #{id} AND is_deleted = 0
+    </select>
+
+    <!--获取指定Limit的数据lists-->
+    <select id="listByLimit" resultMap="ConfigCategoryMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM config_category
+        <where>
+            <if test="id != null">
+                AND `id` = #{id}
+            </if>
+            <if test="title != null">
+                AND `title` = #{title}
+            </if>
+            <if test="brandId != null">
+                AND `brand_id` = #{brandId}
+            </if>
+            <if test="firstCid != null">
+                AND `first_cid` = #{firstCid}
+            </if>
+            <if test="secondCid != null">
+                AND `second_cid` = #{secondCid}
+            </if>
+            <if test="parentCid != null">
+                AND `parent_cid` = #{parentCid}
+            </if>
+            <if test="level != null">
+                AND `level` = #{level}
+            </if>
+            <if test="sort != null">
+                AND `sort` = #{sort}
+            </if>
+            <if test="deleted != null">
+                AND `is_deleted` = #{deleted}
+            </if>
+            <if test="gmtCreate != null">
+                AND `gmt_create` = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                AND `gmt_modified` = #{gmtModified}
+            </if>
+        </where>
+        LIMIT #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询lists-->
+    <select id="listByAll" resultMap="ConfigCategoryMapper">
+        SELECT
+        <include refid="AllColumn"/>
+        FROM config_category
+        <where>
+            <if test="id != null">
+                AND `id` = #{id}
+            </if>
+            <if test="title != null">
+                AND `title` = #{title}
+            </if>
+            <if test="brandId != null">
+                AND `brand_id` = #{brandId}
+            </if>
+            <if test="firstCid != null">
+                AND `first_cid` = #{firstCid}
+            </if>
+            <if test="secondCid != null">
+                AND `second_cid` = #{secondCid}
+            </if>
+            <if test="parentCid != null">
+                AND `parent_cid` = #{parentCid}
+            </if>
+            <if test="level != null">
+                AND `level` = #{level}
+            </if>
+            <if test="sort != null">
+                AND `sort` = #{sort}
+            </if>
+            <if test="deleted != null">
+                AND `is_deleted` = #{deleted}
+            </if>
+            <if test="gmtCreate != null">
+                AND `gmt_create` = #{gmtCreate}
+            </if>
+            <if test="gmtModified != null">
+                AND `gmt_modified` = #{gmtModified}
+            </if>
+        </where>
+    </select>
+    <!--插入一条记录-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        INSERT INTO config_category
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                `title`,
+            </if>
+            <if test="brandId != null">
+                `brand_id`,
+            </if>
+            <if test="firstCid != null">
+                `first_cid`,
+            </if>
+            <if test="secondCid != null">
+                `second_cid`,
+            </if>
+            <if test="parentCid != null">
+                `parent_cid`,
+            </if>
+            <if test="level != null">
+                `level`,
+            </if>
+            <if test="sort != null">
+                `sort`,
+            </if>
+            <if test="deleted != null">
+                `is_deleted`,
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create`,
+            </if>
+            <if test="gmtModified != null">
+                `gmt_modified`,
+            </if>
+        </trim>
+        <trim prefix="VALUES (" suffix=")" suffixOverrides=",">
+            <if test="title != null">
+                #{title},
+            </if>
+            <if test="brandId != null">
+                #{brandId},
+            </if>
+            <if test="firstCid != null">
+                #{firstCid},
+            </if>
+            <if test="secondCid != null">
+                #{secondCid},
+            </if>
+            <if test="parentCid != null">
+                #{parentCid},
+            </if>
+            <if test="level != null">
+                #{level},
+            </if>
+            <if test="sort != null">
+                #{sort},
+            </if>
+            <if test="deleted != null">
+                #{deleted},
+            </if>
+            <if test="gmtCreate != null">
+                #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                #{gmtModified},
+            </if>
+        </trim>
+    </insert>
+
+    <!--通过主键修改数据，禁止非主键更新-->
+    <update id="updateById">
+        UPDATE config_category
+        <set>
+            <if test="title != null">
+                `title` = #{title},
+            </if>
+            <if test="brandId != null">
+                `brand_id` = #{brandId},
+            </if>
+            <if test="firstCid != null">
+                `first_cid` = #{firstCid},
+            </if>
+            <if test="secondCid != null">
+                `second_cid` = #{secondCid},
+            </if>
+            <if test="parentCid != null">
+                `parent_cid` = #{parentCid},
+            </if>
+            <if test="level != null">
+                `level` = #{level},
+            </if>
+            <if test="sort != null">
+                `sort` = #{sort},
+            </if>
+            <if test="deleted != null">
+                `is_deleted` = #{deleted},
+            </if>
+            <if test="gmtCreate != null">
+                `gmt_create` = #{gmtCreate},
+            </if>
+            <if test="gmtModified != null">
+                `gmt_modified` = #{gmtModified},
+            </if>
+        </set>
+        WHERE `id` = #{id}
+    </update>
+
+    <!--通过主键软删除-->
+    <update id="deleteById">
+        UPDATE config_category SET is_deleted = 1 WHERE id = #{id}
+    </update>
+
+    <!--通过主键硬删除-->
+    <delete id="forceDeleteById">
+        DELETE FROM config_category WHERE id = #{id}
+    </delete>
+
+    <!--==========系统生成公共方法——结束==========-->
+    <select id="getCidByName" resultMap="ConfigCategoryMapper">
+        select id,title from config_category where title = #{title} and level = 1 and is_deleted = 0
+    </select>
+
+
+    <select id="listCidByNameList" resultMap="ConfigCategoryMapper">
+        SELECT id ,
+        title FROM config_category
+        WHERE title
+        IN
+        <foreach collection="list" item="title" index="index" open="(" close=")" separator=",">
+            #{title}
+        </foreach>
+        AND
+        is_deleted = 0
+        AND level = 1
+        ORDER BY id DESC
+    </select>
+
+</mapper>
